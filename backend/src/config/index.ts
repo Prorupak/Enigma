@@ -22,6 +22,7 @@ const validateEnvVariables = () => {
       GITHUB_PRIVATE_KEY: joi.string().required(),
       GITHUB_CLIENT_WEBHOOK_SECRET: joi.string().required(),
       WEBHOOk_PROXY: joi.string().required(),
+      MONGO_URI: joi.string().required(),
     })
     .unknown();
 
@@ -42,6 +43,7 @@ export const config = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   verboseErrorOutput: envVars.VERBOSE_ERROR_OUTPUT,
+  mongoUri: envVars.MONGO_URI,
   smtp: {
     host: envVars.SMTP_HOST,
     port: envVars.SMTP_PORT,
