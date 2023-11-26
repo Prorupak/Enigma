@@ -18,6 +18,10 @@ const validateEnvVariables = () => {
       SMTP_FROM_ADDRESS: joi.string().required(),
       SMTP_FROM_NAME: joi.string().required(),
       SMTP_NAME: joi.string().required(),
+      GITHUB_APP_ID: joi.string().required(),
+      GITHUB_PRIVATE_KEY: joi.string().required(),
+      GITHUB_CLIENT_WEBHOOK_SECRET: joi.string().required(),
+      WEBHOOk_PROXY: joi.string().required(),
     })
     .unknown();
 
@@ -47,4 +51,10 @@ export const config = {
     fromAddress: envVars.SMTP_FROM_ADDRESS,
     fromName: envVars.SMTP_FROM_NAME,
   },
+  github: {
+    appId: envVars.GITHUB_APP_ID,
+    privateKey: envVars.GITHUB_PRIVATE_KEY,
+    clientWebhookSecret: envVars.GITHUB_CLIENT_WEBHOOK_SECRET,
+  },
+  webhookProxy: envVars.WEBHOOk_PROXY,
 };
