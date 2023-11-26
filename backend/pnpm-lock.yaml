@@ -178,6 +178,9 @@ devDependencies:
   '@types/node':
     specifier: ^17.0.45
     version: 17.0.45
+  '@types/nodemailer':
+    specifier: ^6.4.14
+    version: 6.4.14
   '@types/passport':
     specifier: ^1.0.11
     version: 1.0.16
@@ -2759,6 +2762,12 @@ packages:
 
   /@types/node@17.0.45:
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
+
+  /@types/nodemailer@6.4.14:
+    resolution: {integrity: sha512-fUWthHO9k9DSdPCSPRqcu6TWhYyxTBg382vlNIttSe9M7XfsT06y0f24KHXtbnijPGGRIcVvdKHTNikOI6qiHA==}
+    dependencies:
+      '@types/node': 17.0.45
+    dev: true
 
   /@types/passport-google-oauth2@0.1.8:
     resolution: {integrity: sha512-0lgGOVbGNTw7NcmrPh3pRwtGJXf1XZG7FZkYtM5DuQ8HJjHzi5mMIq28x7v/q5NNDIrFvhjE0CnyTv7hn4DIjg==}

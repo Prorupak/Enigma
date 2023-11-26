@@ -1,9 +1,9 @@
 import { ErrorRequestHandler } from "express";
-import { InternalServerError, UnauthorizedRequestError } from "@/utils/errors";
-import { logger } from "@/utils/logger";
 import RequestError, { mapToLogLevel } from "@/utils/requestError";
 import { ForbiddenError } from "@casl/ability";
 import { TokenExpiredError } from "jsonwebtoken";
+import { InternalServerError, UnauthorizedRequestError } from "../utils/errors";
+import { logger } from "../utils/logger";
 
 /**
  * Error request handler middleware to handle and respond to errors.
