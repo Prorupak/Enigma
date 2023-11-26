@@ -1,6 +1,7 @@
 import { config as dotConfig } from "dotenv";
 import joi from "joi";
 
+
 dotConfig({ path: `.env.${process.env.NODE_ENV || "development"}` });
 
 const validateEnvVariables = () => {
@@ -9,6 +10,7 @@ const validateEnvVariables = () => {
     .keys({
       NODE_ENV: joi.string().valid("development", "production", "test"),
       PORT: joi.number().default(8000),
+      VERBOSE_ERROR_OUTPUT: joi.boolean().default(false),
       SMTP_HOST: joi.string().required(),
       SMTP_PORT: joi.string().required(),
       SMTP_PASSWORD: joi.string().required(),
@@ -35,6 +37,7 @@ const envVars = validateEnvVariables();
 export const config = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
+  verboseErrorOutput: envVars.VERBOSE_ERROR_OUTPUT,
   smtp: {
     host: envVars.SMTP_HOST,
     port: envVars.SMTP_PORT,
