@@ -1,5 +1,6 @@
 import RequestError, { ELogLevel, RequestErrorContext } from "./requestError";
 
+
 class CustomErrors {
   private createError({
     logLevel,
@@ -19,7 +20,7 @@ class CustomErrors {
     });
   }
 
-  public routeNotFoundError(
+  public RouteNotFoundError(
     error?: Partial<RequestErrorContext>,
   ): RequestError {
     return this.createError({
@@ -32,7 +33,7 @@ class CustomErrors {
     });
   }
 
-  public methodNotAllowedError(
+  public MethodNotAllowedError(
     error?: Partial<RequestErrorContext>,
   ): RequestError {
     return this.createError({
@@ -47,7 +48,7 @@ class CustomErrors {
     });
   }
 
-  public unauthorizedRequestError(
+  public UnauthorizedRequestError(
     error?: Partial<RequestErrorContext>,
   ): RequestError {
     return this.createError({
@@ -61,7 +62,7 @@ class CustomErrors {
     });
   }
 
-  public forbiddenRequestError(
+  public ForbiddenRequestError(
     error?: Partial<RequestErrorContext>,
   ): RequestError {
     return this.createError({
@@ -74,7 +75,7 @@ class CustomErrors {
     });
   }
 
-  public badRequestError(error?: Partial<RequestErrorContext>): RequestError {
+  public BadRequestError(error?: Partial<RequestErrorContext>): RequestError {
     return this.createError({
       logLevel: error?.logLevel,
       statusCode: error?.statusCode ?? 400,
@@ -85,7 +86,7 @@ class CustomErrors {
     });
   }
 
-  public resourceNotFoundError(
+  public ResourceNotFoundError(
     error?: Partial<RequestErrorContext>,
   ): RequestError {
     return this.createError({
@@ -98,7 +99,7 @@ class CustomErrors {
     });
   }
 
-  public internalServerError(
+  public InternalServerError(
     error?: Partial<RequestErrorContext>,
   ): RequestError {
     return this.createError({
@@ -113,7 +114,7 @@ class CustomErrors {
     });
   }
 
-  public serviceUnavailableError(
+  public ServiceUnavailableError(
     error?: Partial<RequestErrorContext>,
   ): RequestError {
     return this.createError({
@@ -128,7 +129,7 @@ class CustomErrors {
     });
   }
 
-  public validationError(error?: Partial<RequestErrorContext>): RequestError {
+  public ValidationError(error?: Partial<RequestErrorContext>): RequestError {
     return this.createError({
       logLevel: error?.logLevel,
       statusCode: error?.statusCode ?? 400,
@@ -153,8 +154,15 @@ class CustomErrors {
   }
 }
 
-const errors = new CustomErrors();
-
-export default {
-  ...new CustomErrors(),
-};
+export const {
+  AccountNotFoundError,
+  BadRequestError,
+  ForbiddenRequestError,
+  InternalServerError,
+  MethodNotAllowedError,
+  ResourceNotFoundError,
+  RouteNotFoundError,
+  ServiceUnavailableError,
+  UnauthorizedRequestError,
+  ValidationError,
+} = new CustomErrors();
