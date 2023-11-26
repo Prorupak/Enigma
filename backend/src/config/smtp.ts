@@ -1,6 +1,9 @@
-import { SMTP_HOST_GMAIL, SMTP_HOST_SENDGRID } from "@/constants";
 import nodemailer, { TransportOptions } from "nodemailer";
 import SMTPConnection from "nodemailer/lib/smtp-connection";
+import {
+  SMTP_HOST_GMAIL,
+  SMTP_HOST_SENDGRID
+} from "@/constants";
 import { config } from "../config";
 
 /**
@@ -9,7 +12,7 @@ import { config } from "../config";
  * @returns {Promise<nodemailer.Transporter>} A promise that resolves to the nodemailer transporter.
  */
 export const initSmtp = async (): Promise<nodemailer.Transporter> => {
-  const mailOpts: SMTPConnection.Options = {
+  const mailOpts: TransportOptions = {
     host: config.smtp.host,
     port: config.smtp.port,
   };
@@ -29,7 +32,7 @@ export const initSmtp = async (): Promise<nodemailer.Transporter> => {
       case SMTP_HOST_GMAIL:
         mailOpts.requireTLS = true;
         mailOpts.tls = {
-          ciphers: "TLSv1.2",
+          ciphers: "TLSv1.2"
         };
         break;
       default:

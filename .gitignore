@@ -57,5 +57,3 @@ pnpm-debug.log*
 .vscode/*
 
 frontend-build
-./dist
-./build
