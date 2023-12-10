@@ -1,5 +1,6 @@
 import { Types } from "mongoose";
 
+
 export type IToken = {
   email: string;
   token: string;
@@ -11,7 +12,7 @@ export type ITokenData = {
   type: string;
   email?: string;
   phoneNumber?: string;
-  entity?: Types.ObjectId;
+  enterprise?: Types.ObjectId;
   tokenHash: string;
   triesLeft?: number;
   expiresAt: Date;

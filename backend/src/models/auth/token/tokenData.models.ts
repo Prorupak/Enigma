@@ -20,9 +20,9 @@ const tokenDataSchema = new Schema<ITokenData>(
     phoneNumber: {
       type: String,
     },
-    entity: {
+    enterprise: {
       type: Schema.Types.ObjectId,
-      ref: "Entity",
+      ref: "Enterprise",
     },
     tokenHash: {
       type: String,
