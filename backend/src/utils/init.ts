@@ -1,9 +1,8 @@
 import { initSmtp } from "@/config/smtp";
-import { mics } from "@/mics";
 import { setTransporter } from "@/config/nodemailer";
 
 /**
- * performs tasks  like: 
+ * performs tasks  like:
  * - Initialize SMTP configuration
  * - Set the transporter for nodemailer
  * - Perform additional startup tasks
@@ -17,7 +16,6 @@ export const init = async (): Promise<void> => {
     // Initialize SMTP configuration
     const transporter = await initSmtp();
     setTransporter(transporter);
-    await mics({ transporter });
   } catch (error) {
     throw new Error(`Initialization failed: ${error.message}`);
   }
