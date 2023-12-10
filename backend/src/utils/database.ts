@@ -10,6 +10,7 @@ import { logger } from "../utils/logger";
  */
 const initDatabaseHelper = async ({ mongoURL }) => {
   try {
+     mongoose.set("strictQuery", false)
     await mongoose.connect(mongoURL);
 
     // Allow empty strings to pass the required validator
