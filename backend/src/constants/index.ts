@@ -1,2 +1,2 @@
 export * from "./smtp"
-export * from "./entity";
+export * from "./enterprise";
