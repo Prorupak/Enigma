@@ -7,5 +7,5 @@ export const CUSTOM = "custom";
 // membership statuses
 export const INVITED = "invited";
 
-// -- entity statuses
+// -- enterprise statuses
 export const ACCEPTED = "accepted";
