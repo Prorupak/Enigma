@@ -1,6 +1,7 @@
 import { model, Schema, Types } from "mongoose";
 import type { ITokenData } from "./token.types";
 
+
 const tokenDataSchema = new Schema<ITokenData>(
   {
     type: {
@@ -42,4 +43,4 @@ const tokenDataSchema = new Schema<ITokenData>(
   },
 );
 
-export const TokenData = model<ITokenData>("TokenData", tokenDataSchema);
+export default model<ITokenData>("TokenData", tokenDataSchema);

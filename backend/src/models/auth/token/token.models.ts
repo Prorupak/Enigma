@@ -1,6 +1,7 @@
 import { model, Schema } from "mongoose";
 import type { IToken } from "./token.types";
 
+
 const tokenSchema = new Schema<IToken>({
   email: {
     type: String,
@@ -21,4 +22,4 @@ const tokenSchema = new Schema<IToken>({
 
 tokenSchema.index({ email: 1 });
 
-export const Token = model<IToken>("Token", tokenSchema);
+export default model<IToken>("Token", tokenSchema);

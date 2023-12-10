@@ -1,6 +1,7 @@
 import { Document, model, Schema, Types } from "mongoose";
 import type { ITokenVersion } from "./token.types";
 
+
 const tokenVersionSchema = new Schema<ITokenVersion>(
   {
     user: {
@@ -33,8 +34,4 @@ const tokenVersionSchema = new Schema<ITokenVersion>(
     timestamps: true,
   },
 );
-
-export const TokenVersion = model<ITokenVersion>(
-  "TokenVersion",
-  tokenVersionSchema,
-);
+export default model<ITokenVersion>("TokenVersion", tokenVersionSchema);
