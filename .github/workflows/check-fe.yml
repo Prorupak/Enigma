@@ -2,39 +2,46 @@ name: "lint_build_fe"
 
 on:
   push:
-    branches: [ master, develop ]
-    paths: 
+    branches:
+      - master
+      - develop
+    paths:
       - 'frontend/**'
-      -"!frontend/README.md"
-      -"!frontend/.*"
+      - '!frontend/README.md'
+      - '!frontend/.*'
   pull_request:
-    branches: [ master, develop ]
-    paths: 
+    branches:
+      - master
+      - develop
+    paths:
       - 'frontend/**'
-      -"!frontend/README.md"
-      -"!frontend/.*"
+      - '!frontend/README.md'
+      - '!frontend/.*'
 
 jobs:
-  lint_build_fe: 
+  lint_build_fe:
     name: "Lint and Build FE"
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
-    steps: 
-        - name: ☁️ Checkout source
-          uses: actions/checkout@v3
-        - name: 🔧 Setup Node 18
-          uses: actions/setup-node@v3
-          with:
-              node-version: "18"
-              cache: "pnpm"
-              cache-dependency-path: frontend/pnpm-lock.yaml
-        - name: 📦 Install dependencies
-          run: pnpm install --frozen-lockfile
-          working-directory: frontend
 
-        - name: ✅ Check Lint
-          run: pnpm lint
-        - name: 🏗️ Run Build
-          run: pnpm build  
-          working-directory: frontend
+    steps:
+      - name: ☁️ Checkout source
+        uses: actions/checkout@v3
+
+      - name: 🔧 Setup Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "pnpm"
+          cache-dependency-path: frontend/pnpm-lock.yaml
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: frontend
+
+      - name: ✅ Check Lint
+        run: pnpm lint
+
+      - name: 🏗️ Run Build
+        run: pnpm build
+        working-directory: frontend
