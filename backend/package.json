@@ -1,10 +1,10 @@
 {
   "name": "enigma-api",
   "version": "1.0.0",
-  "main": "src/server.ts",
+  "main": "src/app.ts",
   "scripts": {
     "start": "node build/index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon --exec ts-node --files -r tsconfig-paths/register src/app.ts",
     "swagger-autogen": "node ./swagger/index.ts",
     "build": "rimraf ./build && tsc && cp -R ./src/templates ./build && cp -R ./src/data ./build",
     "lint": "eslint . --ext .ts",
