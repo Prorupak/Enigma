@@ -23,6 +23,7 @@ const validateEnvVariables = () => {
       GITHUB_CLIENT_WEBHOOK_SECRET: joi.string().required(),
       WEBHOOk_PROXY: joi.string().required(),
       MONGO_URI: joi.string().required(),
+      SALT_ROUNDS: joi.number().default(10),
     })
     .unknown();
 
@@ -59,4 +60,5 @@ export const config = {
     clientWebhookSecret: envVars.GITHUB_CLIENT_WEBHOOK_SECRET,
   },
   webhookProxy: envVars.WEBHOOk_PROXY,
+  saltRounds: envVars.SALT_ROUNDS,
 };
