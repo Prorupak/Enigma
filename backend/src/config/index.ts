@@ -1,46 +1,33 @@
 import { config as dotConfig } from "dotenv";
-import joi from "joi";
+import { z } from "zod";
 
 
+const envVarsSchema = z.object({
+  NODE_ENV: z.string().default("development").transform((val) => val.toLowerCase()),
+  PORT: z.number().default(8000),
+  VERBOSE_ERROR_OUTPUT: z.boolean().default(false),
+  SMTP_HOST: z.string(),
+  SMTP_PORT: z.string(),
+  SMTP_SECURE: z.boolean().default(true),
+  SMTP_PASSWORD: z.string(),
+  SMTP_USERNAME: z.string(),
+  SMTP_FROM_ADDRESS: z.string(),
+  SMTP_FROM_NAME: z.string(),
+  SMTP_NAME: z.string(),
+  GITHUB_APP_ID: z.string(),
+  GITHUB_PRIVATE_KEY: z.string(),
+  GITHUB_CLIENT_WEBHOOK_SECRET: z.string(),
+  WEBHOOk_PROXY: z.string(),
+  MONGO_URI: z.string(),
+  SALT_ROUNDS: z.number().default(10),
+});
+
+// Load and validate environment variables
 dotConfig({ path: `.env.${process.env.NODE_ENV || "development"}` });
 
-const validateEnvVariables = () => {
-  const envVarsSchema = joi
-    .object()
-    .keys({
-      NODE_ENV: joi.string().valid("development", "production", "test"),
-      PORT: joi.number().default(8000),
-      VERBOSE_ERROR_OUTPUT: joi.boolean().default(false),
-      SMTP_HOST: joi.string().required(),
-      SMTP_PORT: joi.string().required(),
-      SMTP_PASSWORD: joi.string().required(),
-      SMTP_USERNAME: joi.string().required(),
-      SMTP_FROM_ADDRESS: joi.string().required(),
-      SMTP_FROM_NAME: joi.string().required(),
-      SMTP_NAME: joi.string().required(),
-      GITHUB_APP_ID: joi.string().required(),
-      GITHUB_PRIVATE_KEY: joi.string().required(),
-      GITHUB_CLIENT_WEBHOOK_SECRET: joi.string().required(),
-      WEBHOOk_PROXY: joi.string().required(),
-      MONGO_URI: joi.string().required(),
-      SALT_ROUNDS: joi.number().default(10),
-    })
-    .unknown();
+const envVars = envVarsSchema.parse(process.env);
 
-  const { value: envVars, error } = envVarsSchema
-    .prefs({ errors: { label: "key" } })
-    .validate(process.env);
-
-  if (error) {
-    throw new Error(`Config validation error: ${error.message}`);
-  }
-
-  return envVars;
-};
-
-const envVars = validateEnvVariables();
-
-export const config = {
+const config = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   verboseErrorOutput: envVars.VERBOSE_ERROR_OUTPUT,
@@ -62,3 +49,5 @@ export const config = {
   webhookProxy: envVars.WEBHOOk_PROXY,
   saltRounds: envVars.SALT_ROUNDS,
 };
+
+export { config };
